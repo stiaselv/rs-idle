@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import BankBox from '../components/itemBoxes/BankBox';
 import Footer from '../components/Footer';
 import ItemBox from '../components/itemBoxes/ItemBox';
-import UserService from '../services/UserService';
+import axios from 'axios';
 
 const Bank = () => {
 
@@ -15,7 +15,7 @@ const Bank = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await UserService.getUser();
+        const response = await axios.get('http://localhost:8080/api/user/$id')
         setUser(response.data)
       } catch (err) {
         console.log(err)

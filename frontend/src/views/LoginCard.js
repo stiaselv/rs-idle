@@ -1,42 +1,39 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
-import UserService from '../services/UserService';
 import items from './../components/Items'
+import axios from 'axios';
 
 const LoginCard = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [user, setUser] = useState({
-    id: "",
-    email: "",
-    displayName: "",
-    password: "",
-  })
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setUser({ ...user, [e.target.name]: value})
-  }
-
-  const handleLogin = (e) => {
+  const handleDispatch = () => {
     dispatch({
       type: 'SET_ITEMS',
       payload: items
     })
+    dispatch({
+      type: 'SET_LOGIN',
+      payload: true
+    })
+  }
+
+  const handleLogin = async (e) => {
+    handleDispatch();
     e.preventDefault();
-    UserService.saveUser(user)
-      .then((result) => {
-        console.log(result);
-      })
-      .then(
-        navigate("/bank")
-      )
-      .catch((err) => {
-        console.log(err)
-      })
+    console.log('email: ' + email + ' _|_ password: ' + password)
+    //try {
+    //  const response = await axios.post('http://127.0.0.1:8080/api/v1/auth/login', { email, password });
+    //  console.log(response.data);
+    //} catch (err) {
+    //  console.error(err);
+    // }
+    navigate('/bank')
   }
 
   const handleCreate = () => {
@@ -47,16 +44,16 @@ const LoginCard = () => {
     <div className='flex max-w-2xl mx-auto shadow border-black justify-center items-center mt-6 bg-slate-500 border-2'>
       <div className='px-12 py-28 grid justify-items-center'>
         <div className='font-bold text-2xl tracking-wider pb-12 h-20 w-44 bg-gray-300 border-2 border-black'>
-          <h1 className='mt-5 px-5'>IDLEGAINS</h1>
+          <h1 className='mt-5 px-5 text-center'>RS-IDLE</h1>
         </div>
         <div className='grid pt-12 font-semibold justify-items-center'>
           <label>Email</label>
           <div>
             <input 
-              type={Text}
-              name='email'
-              value={user.email}
-              onChange={(e) => handleChange(e)}
+              type='text'
+              placeholder='Email'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               className='h-10 w-96 border-2 border-black mt-2 px-2 py-2'></input>
           </div>
         </div>
@@ -64,10 +61,10 @@ const LoginCard = () => {
           <label>Password </label>
           <div>
             <input 
-              type={Text}
-              name='password'
-              value={user.password}
-              onChange={(e) => handleChange(e)} 
+              type='text'
+              placeholder='Password'
+              value={password}
+              onChange={e => setPassword(e.target.value)} 
               className='h-10 w-96 border-2 border-black mt-2 px-2 py-2'></input>
           </div>
         </div>

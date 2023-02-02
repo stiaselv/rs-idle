@@ -35,7 +35,7 @@ public class UserService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepo.findByUsername(username).orElse(null);
+        User user = userRepo.findByDisplayName(username).orElse(null);
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
@@ -43,7 +43,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User getUserByUsername(String username) {
-        User user = userRepo.findByUsername(username).orElse(null);
+        User user = userRepo.findByDisplayName(username).orElse(null);
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }

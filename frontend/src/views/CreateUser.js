@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import UserService from '../services/UserService';
+import axios from 'axios';
 
 
 
@@ -9,33 +9,35 @@ const CreateUser = () => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
-    id: "",
     email: "",
-    displayName: "",
     password: "",
+    username: "",
+    role: "USER",
   })
+  const [rePassword, setRePassword] = useState("");
 
   const handleChange = (e) => {
     const value = e.target.value;
     setUser({ ...user, [e.target.name]: value})
   }
 
-  const handleSave = (e) => {
-    if (!user.email === "" && user.email.contains("@") && !user.displayName.isEmpty && !user.password.isEmpty) {
-      e.preventDefault();
-    UserService.saveUser(user)
-      .then((result) => {
-        console.log(result);
-
-      })
-      .then(
-        navigate("/login")
-      )
-      .catch((err) => {
-        console.log(err)
-      })
+  const handleSave = async (e) => {
+    if (user.email === "") {
+      console.log("Please fill out your email")  
+    } 
+    if (user.displayName === "") {
+      console.log('Please fill out your Display Name')
+    }
+    if (user.password === "") {
+      console.log('The passwords dont match')
     } else {
-      console.log("Please fill out form correctly")  
+      e.preventDefault();
+      try {
+        const res = await axios.post('http://127.0.0.1:8080/api/v1/auth/register', user)
+        console.log(res.data)
+        } catch (err) {
+        console.log(err)
+        }
     }
   }
 
@@ -87,7 +89,7 @@ const CreateUser = () => {
         <div>
           <input 
             type={String}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => setRePassword}
             className='h-10 w-96 mt-2 px-2 py-2 border-2 border-black'></input>
         </div>
       </div>

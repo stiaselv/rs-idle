@@ -9,6 +9,7 @@ import CreateUser from './views/CreateUser';
 import Bank from './views/Bank';
 import Forest from './views/Forest';
 import Quarry from './views/Quarry';
+import ProfilePage from './views/ProfilePage';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
           <Route path='/' element={<LoginCard />} />
           <Route path='/login' element={<LoginCard />} />
           <Route path='/create' element={<CreateUser />} />
+          <Route path='/profile' element={<ProfilePage />} />
           <Route path='/bank' element={<Bank />} />
           <Route path='/forest' element={<Forest />} />
           <Route path='/quarry' element={<Quarry />} />

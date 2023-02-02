@@ -1,43 +1,50 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleHomeClick = () => {
+    if (isLogged === true) {
+      navigate('/bank')
+    } else {
+      navigate('/')
+    }
+  }
 
   const handleLogout = () => {
+    dispatch({
+      type: 'SET_LOGIN',
+      payload: false
+
+    })
     navigate('/')
   }
 
-  const isLogged = useSelector(state => state.isLoggedIn);
+  const isLogged = useSelector((state) => state.isLoggedIn)
 
   return (
     <nav className='flex justify-between px-4 bg-gray-700 w-screen z-50 border-b items-center border-black'>
-      <div>
-        <button className="relative group">
-          <div className="relative flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all bg-slate-700 ring-0 ring-gray-300 hover:ring-8 group-focus:ring-4 ring-opacity-30 duration-200 shadow-md">
-            <div className="flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden">
-              <div className="bg-white h-[2px] w-7 transform transition-all duration-300 origin-left group-focus:translate-y-6 delay-100"></div>
-              <div className="bg-white h-[2px] w-7 rounded transform transition-all duration-300 group-focus:translate-y-6 delay-75"></div>
-              <div className="bg-white h-[2px] w-7 transform transition-all duration-300 origin-left group-focus:translate-y-6"></div>
-    
-              <div className="absolute items-center justify-between transform transition-all duration-500 top-2.5 -translate-x-10 group-focus:translate-x-0 flex w-0 group-focus:w-12">
-                <div className="absolute bg-white h-[2px] w-5 transform transition-all duration-500 rotate-0 delay-300 group-focus:rotate-45"></div>
-                <div className="absolute bg-white h-[2px] w-5 transform transition-all duration-500 -rotate-0 delay-300 group-focus:-rotate-45"></div>
-              </div>
-            </div>
-          </div>
-        </button>
-      </div>
+      {isLogged ?
+        <div className='w-48'></div>
+      : <div></div> }
       <div>
         <figure>
-          <img src='https://cdn.discordapp.com/attachments/222195714028077067/1061111271686152193/Logo_blank.png' alt='App-Logo' className='h-36 w-76' onClick={ handleLogout }></img>
+          <img src='https://cdn.discordapp.com/attachments/222195714028077067/1061111271686152193/Logo_blank.png' alt='App-Logo' className='h-36 w-76' onClick={ handleHomeClick }></img>
         </figure>
       </div>
-      <div className='hidden space-x-8 lg:flex'>
-          <button className='w-20 rounded-md h-8 bg-gray-300' onClick={ handleLogout }>Logout</button>
-      </div>
+      {isLogged ? 
+        <div className='hidden space-x-8 mr-4 lg:flex'>
+          <div className='flex space-x-2 items-center hover:opacity-50' onClick={ () => navigate('/profile') }>
+            <label className='font-bold'>CurrentUser</label>
+            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjYmlp9JDeNMaFZzw9S3G1dVztGqF_2vq9nA&usqp=CAU' className='rounded-full h-16 w-16'></img>  
+          </div>
+          <button className='rounded-md px-6 py-4 bg-slate-800 text-white border-2 border-white font-semibold hover:bg-slate-700' onClick={ handleLogout }>Logout</button>
+        </div>
+      : <div></div> }
     </nav>
     )
 }

@@ -1,5 +1,4 @@
   const items = [
-    //WoodCutting
   {
     itemID: 1,
     name: "Coins",
@@ -190,7 +189,7 @@
   {
     itemID: 18,
     name: "Tin Ore",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Mining/Tin_Ore.png',
     price: 5,
     haPrice: 1,
     description: "Pile of Tin Ore, you should try smelting it.",
@@ -201,7 +200,7 @@
   {
     itemID: 19,
     name: "Copper Ore",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Mining/Copper_Ore.png',
     price: 5,
     haPrice: 1,
     description: "Pile of Copper Ore, you should try smelting it.",
@@ -212,7 +211,7 @@
   {
     itemID: 20,
     name: "Iron Ore",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Mining/Iron_Ore.png',
     price: 10,
     haPrice: 6,
     description: "Pile of Iron Ore, you should try smelting it.",
@@ -223,7 +222,7 @@
   {
     itemID: 21,
     name: "Coal Ore",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Mining/Coal_Ore.png',
     price: 20,
     haPrice: 10,
     description: "Pile of Coal Ore, you should try smelting it.",
@@ -234,7 +233,7 @@
   {
     itemID: 22,
     name: "Silver Ore",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Mining/Silver_Ore.png',
     price: 20,
     haPrice: 10,
     description: "Pile of Silver Ore, you should try smelting it.",
@@ -245,7 +244,7 @@
   {
     itemID: 23,
     name: "Gold Ore",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Mining/Gold_Ore.png',
     price: 30,
     haPrice: 20,
     description: "Pile of Gold Ore, you should try smelting it.",
@@ -256,7 +255,7 @@
   {
     itemID: 24,
     name: "Mithril Ore",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Mining/Mithril_Ore.png',
     price: 40,
     haPrice: 25,
     description: "Pile of Mithril Ore, you should try smelting it.",
@@ -267,7 +266,7 @@
   {
     itemID: 25,
     name: "Adamant Ore",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Mining/Adamant_Ore.png',
     price: 50,
     haPrice: 35,
     description: "Pile of Adamant Ore, you should try smelting it.",
@@ -278,7 +277,7 @@
   {
     itemID: 26,
     name: "Rune Ore",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Mining/Rune_Ore.png',
     price: 70,
     haPrice: 50,
     description: "Pile of Rune Ore, you should try smelting it.",
@@ -289,7 +288,7 @@
   {
     itemID: 27,
     name: "Dragon Ore",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Mining/Dragon_Ore.png',
     price: 120,
     haPrice: 100,
     description: "Pile of Dragon Ore, you should try smelting it.",
@@ -300,7 +299,7 @@
   {
     itemID: 28,
     name: "Bronze Bar",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Smithing/Bronze_Bar.png',
     price: 20,
     haPrice: 10,
     description: "A solid Bronze Bar, you should try smithing it into something nice!",
@@ -311,7 +310,7 @@
   {
     itemID: 29,
     name: "Iron Bar",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Smithing/Iron_Bar.png',
     price: 30,
     haPrice: 20,
     description: "A solid Iron Bar, you should try smithing it into something nice!",
@@ -322,7 +321,7 @@
   {
     itemID: 30,
     name: "Steel Bar",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Smithing/Steel_Bar.png',
     price: 45,
     haPrice: 30,
     description: "A solid Steel Bar, you should try smithing it into something nice!",
@@ -355,7 +354,7 @@
   {
     itemID: 33,
     name: "Mithril Bar",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Smithing/Mithril_Bar.png',
     price: 100,
     haPrice: 60,
     description: "A solid Mithril Bar, you should try smithing it into something nice!",
@@ -366,7 +365,7 @@
   {
     itemID: 34,
     name: "Adamant Bar",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Smithing/Adamant_Bar.png',
     price: 200,
     haPrice: 140,
     description: "A solid Adamant Bar, you should try smithing it into something nice!",
@@ -377,7 +376,7 @@
   {
     itemID: 35,
     name: "Rune Bar",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Smithing/Rune_Bar.png',
     price: 400,
     haPrice: 320,
     description: "A solid Rune Bar, you should try smithing it into something nice!",
@@ -388,7 +387,7 @@
   {
     itemID: 36,
     name: "Dragon Bar",
-    image: './../assets/ItemThumbnail/Woodcutting/Elder_Log.png',
+    image: './../assets/ItemThumbnail/Smithing/Dragon_Bar.png',
     price: 760,
     haPrice: 640,
     description: "A solid Dragon Bar, you should try smithing it into something nice!",
