@@ -53,7 +53,11 @@ public class AuthenticationService {
   }
 
   public AuthenticationResponse login(LoginRequest request) {
-    // Authenticate the user
+    // Authenticating the user
+    System.out.println("Request: " + request)
+    System.out.println("Email: " + request.getEmail())
+    System.out.println("Password: " + request.getPassword())
+
     Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
                     request.getEmail(),
