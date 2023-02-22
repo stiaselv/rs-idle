@@ -1,13 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { FooterButton } from './FooterButton'
 import ItemBox from './itemBoxes/ItemBox';
+import { connect } from 'react-redux'
+import { useSpring, animated } from 'react-spring'
+import FooterLevels from './FooterLevels';
 
-const Footer = () => {
+const Footer = (props) => {
 
   const navigate = useNavigate();
 
   const [menuSize, setMenuSize] = useState(true);
+  const [showAlert, setShowAlert] = useState(false);
+  const springProps = useSpring({
+    opacity: showAlert ? 1 : 0,
+    transform: showAlert ? 'translate3d(0,0,0)' : 'translate3d(0,100%,0)'
+  });
+
+  useEffect(() => {
+    if (props.currentItemGain.itemID !== 0) {
+      let intervalId;
+      const interval = () => {
+        setShowAlert(true);
+        intervalId = setTimeout(() => {
+          setShowAlert(false);
+        }, 2500);
+      }
+  
+      interval();
+      return () => clearTimeout(intervalId);
+    }
+  }, [props.currentItemGain.prodTimer]);
 
   const handleMenuBtn = () => {
     setMenuSize(!menuSize)
@@ -21,6 +44,7 @@ const Footer = () => {
 
   const handleSlayerCave = () => {
     console.log("Navigating to Slayer Cave")
+    navigate('/slayer')
   }
 
   const handleQuarry = () => {
@@ -34,6 +58,7 @@ const Footer = () => {
 
   const handleForge = () => {
     console.log("Navigating to Forge")
+    navigate('/forge')
   }
 
   const handleBank = () => {
@@ -45,9 +70,23 @@ const Footer = () => {
     console.log("Navigating to Something")
   }
 
+
   if (!menuSize) {
     return (
       <>
+      {showAlert && (
+        <animated.div className='fixed flex w-96 left-96 ml-96 h-20 bg-slate-600 text-black border-black border-2 inset-96 rounded-full justify-items-center items-center'
+          style={springProps}>
+          <img className='w-10 h-10 ml-2' src={require("../assets/ItemThumbnail/Woodcutting/Oak_Log.png")} />
+          <div className='grid justify-items-center mx-5 font-semibold'>
+            <p>+1 {props.currentItemGain.name}</p>
+            <p>You have gained {props.currentItemGain.prodExp} xp</p>
+          </div>
+          <img className='w-10 h-10' src={require("../assets/ItemThumbnail/Woodcutting/Oak_Log.png")} />
+
+
+        </animated.div>
+      )}
         <div className='border'>
 
           <footer className="absolute flex justify-between items-center space-x-5 bottom-0 text-center text-white w-full bg-gray-700 h-3/6 border-t-2 border-black">
@@ -259,84 +298,10 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className='w-1/3 border-left text-center mr-2 mb-2'>
+            <div className='w-1/3 border-left text-center px-5 mb-2'>
               <label className='font-bold'>LEVELS</label>
-              <div class="mt-2 bg-yellow-700 rounded-full">
-                <div class="mt-2 w-80 bg-yellow-500 py-0 rounded-full">
-                  <div class=" text-white text-sm inline-block bg-yellow-600 px-2 rounded-full">
-                    80%
-                  </div>
-                </div>
-              </div>
-              <div class="mt-2 bg-yellow-700 rounded-full">
-                <div class="mt-2 w-20 bg-yellow-500 py-0 rounded-full">
-                  <div class=" text-white text-sm inline-block bg-yellow-600 px-2 rounded-full">
-                    20%
-                  </div>
-                </div>
-              </div>
-              <div class="mt-2 bg-yellow-700 rounded-full">
-                <div class="mt-2 w-16 bg-yellow-500 py-0 rounded-full">
-                  <div class=" text-white text-sm inline-block bg-yellow-600 px-2 rounded-full">
-                    16%
-                  </div>
-                </div>
-              </div>
-              <div class="mt-2 bg-yellow-700 rounded-full">
-                <div class="mt-2 w-56 bg-yellow-500 py-0 rounded-full">
-                  <div class=" text-white text-sm inline-block bg-yellow-600 px-2 rounded-full">
-                    56%
-                  </div>
-                </div>
-              </div>
-              <div class="mt-2 bg-yellow-700 rounded-full">
-                <div class="mt-2 w-20 bg-yellow-500 py-0 rounded-full">
-                  <div class=" text-white text-sm inline-block bg-yellow-600 px-2 rounded-full">
-                    20%
-                  </div>
-                </div>
-              </div>
-              <div class="mt-2 bg-yellow-700 rounded-full">
-                <div class="mt-2 w-72 bg-yellow-500 py-0 rounded-full">
-                  <div class=" text-white text-sm inline-block bg-yellow-600 px-2 rounded-full">
-                    72%
-                  </div>
-                </div>
-              </div>
-              <div class="mt-2 bg-yellow-700 rounded-full">
-                <div class="mt-2 w-48 bg-yellow-500 py-0 rounded-full">
-                  <div class=" text-white text-sm inline-block bg-yellow-600 px-2 rounded-full">
-                    48%
-                  </div>
-                </div>
-              </div>
-              <div class="mt-2 bg-yellow-700 rounded-full">
-                <div class="mt-2 w-44 bg-yellow-500 py-0 rounded-full">
-                  <div class=" text-white text-sm inline-block bg-yellow-600 px-2 rounded-full">
-                    44%
-                  </div>
-                </div>
-              </div>
-              <div class="mt-2 bg-yellow-700 rounded-full">
-                <div class="mt-2 w-20 bg-yellow-500 py-0 rounded-full">
-                  <div class=" text-white text-sm inline-block bg-yellow-600 px-2 rounded-full">
-                    20%
-                  </div>
-                </div>
-              </div>
-              <div class="mt-2 bg-yellow-700 rounded-full">
-                <div class="mt-2 bg-yellow-500 py-0 rounded-full">
-                  <div class=" text-white text-sm inline-block bg-yellow-600 px-2 rounded-full">
-                    99%
-                  </div>
-                </div>
-              </div>
-              <div class="mt-2 bg-yellow-700 rounded-full">
-                <div class="mt-2 w-96 bg-yellow-500 py-0 rounded-full">
-                  <div class=" text-white text-sm inline-block bg-yellow-600 px-2 rounded-full">
-                    96%
-                  </div>
-                </div>
+              <div>
+                <FooterLevels />
               </div>
 
             </div>
@@ -348,6 +313,19 @@ const Footer = () => {
   } else {
     return (
       <>
+      {showAlert && (
+        <animated.div className='fixed flex w-96 h-20 bg-slate-600 text-black left-96 ml-96 border-black border-2 rounded-full items-center'
+          style={springProps}>
+          <img className='w-14 h-14 ml-7' src={props.currentItemGain.image} alt='Item'/>
+          <div className='grid justify-items-center mx-5 font-semibold'>
+            <p>+1 {props.currentItemGain.name}</p>
+            <p>You have gained {props.currentItemGain.prodExp} xp</p>
+          </div>
+          <img className='w-14 h-14' src={require("../assets/ItemThumbnail/Woodcutting/Oak_Log.png")} />
+
+
+        </animated.div>
+      )}
       <div>
       </div>
 
@@ -405,4 +383,10 @@ const Footer = () => {
 
 }
 
-export default Footer
+const mapStateToProps = (state) => {
+  return {
+    currentItemGain: state.currentItemGain
+  }
+}
+
+export default connect(mapStateToProps)(Footer);

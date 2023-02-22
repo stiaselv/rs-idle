@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { currentItemGain } from './../../../redux/actions/index';
-import ProgressBar from '../../ProgressBar'
+import ProgressBar from '../../ProgressBar';
+import items from '../../Items';
 
 const WoodcuttingTable = () => {
 
@@ -26,17 +26,33 @@ const WoodcuttingTable = () => {
   const [progressText7, setProgressText7] = useState("");
 
   const handleButtonClick = (index) => {
-    if (index === active){
+    if (index === active) {
 
       setActive(0)
-      console.log(dispatch(currentItemGain(0)))
-      dispatch(currentItemGain(0))
+      dispatch(null)
 
     } else {
 
       setActive(index)
-      console.log(dispatch(currentItemGain(index)))
-      dispatch(currentItemGain(index))
+      let item = {}
+      items.forEach(i => {
+        if (i.itemID === index) {
+          item = i
+        }
+      })
+      dispatch({
+        type: "NEW_PRODUCTION_TYPE",
+        itemID: item.itemID,
+        name: item.name,
+        image: item.image,
+        price: item.price,
+        haPrice: item.haPrice,
+        description: item.description,
+        class: item.class,
+        prodTimer: item.prodTimer,
+        prodExp: item.prodExp,
+        skill: item.skill,
+      })
     }
   }
 
@@ -77,164 +93,164 @@ const WoodcuttingTable = () => {
 
   return (
     <>
-    <Fragment>
-    <div className='overscroll-auto overflow-auto h-96'>
-      <div className='border-y border-black flex space-x-5'>
-        <div className='flex flex-col items-center'>
-          <div className='flex space-x-5 mt-2 ml-3'>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Normal_Log.png')} alt='Normal'></img>
-            <div className='font-semibold text-xl'>
-              Normal Tree
+      <Fragment>
+        <div className='overscroll-auto overflow-auto h-96'>
+          <div className='border-y border-black flex space-x-5'>
+            <div className='flex flex-col items-center'>
+              <div className='flex space-x-5 mt-2 ml-3'>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Normal_Log.png')} alt='Normal'></img>
+                <div className='font-semibold text-xl'>
+                  Normal Tree
+                </div>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Normal_Log.png')} alt='Normal'></img>
+              </div>
+              <div className='w-3/4 mt-4'>
+                <ProgressBar progress={progress1} handleChange={handleChange1} progressText={progressText1} />
+              </div>
+            </div >
+            <div>
+              <button
+                className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 2 ? 'bg-indigo-500' : ''}`}
+                onClick={() => handleButtonClick(2)}
+              >
+                {active === 2 ? 'stop' : 'select'}
+              </button>
             </div>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Normal_Log.png')} alt='Normal'></img>
-          </div>
-          <div className='w-3/4 mt-4'>
-            <ProgressBar progress={progress1} handleChange={handleChange1} progressText={progressText1} />
-          </div>
-        </div >
-        <div>
-          <button
-            className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 1 ? 'bg-indigo-500' : ''}`}
-            onClick={ () => handleButtonClick(1)}
-          >
-            { active === 1 ? 'stop' : 'select' }
-          </button>
-        </div>
-      </div >
-      <div className='border-y border-black flex space-x-5'>
-        <div className='flex flex-col items-center'>
-          <div className='flex space-x-5 mt-2 ml-3'>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Oak_Log.png')} alt='Oak'></img>
-            <div className='mt-2 font-semibold'>
-              Oak Tree
+          </div >
+          <div className='border-y border-black flex space-x-5'>
+            <div className='flex flex-col items-center'>
+              <div className='flex space-x-5 mt-2 ml-3'>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Oak_Log.png')} alt='Oak'></img>
+                <div className='mt-2 font-semibold'>
+                  Oak Tree
+                </div>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Oak_Log.png')} alt='Oak'></img>
+              </div>
+              <div className='w-3/4'>
+                <ProgressBar progress={progress2} handleChange={handleChange2} progressText={progressText2} />
+              </div>
+            </div >
+            <div>
+              <button
+                className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 3 ? 'bg-indigo-500' : ''}`}
+                onClick={() => handleButtonClick(3)}
+              >
+                {active === 3 ? 'stop' : 'select'}
+              </button>
             </div>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Oak_Log.png')} alt='Oak'></img>
-          </div>
-          <div className='w-3/4'>
-            <ProgressBar progress={progress2} handleChange={handleChange2} progressText={progressText2} />
-          </div>
-        </div >
-        <div>
-        <button
-            className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 2 ? 'bg-indigo-500' : ''}`}
-            onClick={ () => handleButtonClick(2)}
-          >
-            { active === 2 ? 'stop' : 'select' }
-          </button>
-        </div>
-      </div >
-      <div className='border-y border-black flex space-x-5'>
-        <div className='flex flex-col items-center'>
-          <div className='flex space-x-5 mt-2 ml-3'>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Willow_Log.png')} alt='Willow'></img>
-            <div className='mt-2 font-semibold'>
-              Willow Tree
+          </div >
+          <div className='border-y border-black flex space-x-5'>
+            <div className='flex flex-col items-center'>
+              <div className='flex space-x-5 mt-2 ml-3'>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Willow_Log.png')} alt='Willow'></img>
+                <div className='mt-2 font-semibold'>
+                  Willow Tree
+                </div>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Willow_Log.png')} alt='Willow'></img>
+              </div>
+              <div className='w-3/4'>
+                <ProgressBar progress={progress3} handleChange={handleChange3} progressText={progressText3} />
+              </div>
+            </div >
+            <div>
+              <button
+                className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 4 ? 'bg-indigo-500' : ''}`}
+                onClick={() => handleButtonClick(4)}
+              >
+                {active === 4 ? 'stop' : 'select'}
+              </button>
             </div>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Willow_Log.png')} alt='Willow'></img>
-          </div>
-          <div className='w-3/4'>
-            <ProgressBar progress={progress3} handleChange={handleChange3} progressText={progressText3} />
-          </div>
-        </div >
-        <div>
-        <button
-            className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 3 ? 'bg-indigo-500' : ''}`}
-            onClick={ () => handleButtonClick(3)}
-          >
-            { active === 3 ? 'stop' : 'select' }
-          </button>
-        </div>
-      </div >
-      <div className='border-y border-black flex space-x-5'>
-        <div className='flex flex-col items-center'>
-          <div className='flex space-x-5 mt-2 ml-3'>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Maple_Log.png')} alt='Maple'></img>
-            <div className='mt-2 font-semibold'>
-              Maple Tree
+          </div >
+          <div className='border-y border-black flex space-x-5'>
+            <div className='flex flex-col items-center'>
+              <div className='flex space-x-5 mt-2 ml-3'>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Maple_Log.png')} alt='Maple'></img>
+                <div className='mt-2 font-semibold'>
+                  Maple Tree
+                </div>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Maple_Log.png')} alt='Maple'></img>
+              </div>
+              <div className='w-3/4'>
+                <ProgressBar progress={progress4} handleChange={handleChange4} progressText={progressText4} />
+              </div>
+            </div >
+            <div>
+              <button
+                className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 5 ? 'bg-indigo-500' : ''}`}
+                onClick={() => handleButtonClick(5)}
+              >
+                {active === 5 ? 'stop' : 'select'}
+              </button>
             </div>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Maple_Log.png')} alt='Maple'></img>
-          </div>
-          <div className='w-3/4'>
-            <ProgressBar progress={progress4} handleChange={handleChange4} progressText={progressText4} />
-          </div>
-        </div >
-        <div>
-        <button
-            className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 4 ? 'bg-indigo-500' : ''}`}
-            onClick={ () => handleButtonClick(4)}
-          >
-            { active === 4 ? 'stop' : 'select' }
-          </button>
-        </div>
-      </div >
-      <div className='border-y border-black flex space-x-5'>
-        <div className='flex flex-col items-center'>
-          <div className='flex space-x-5 mt-2 ml-3'>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Yew_Log.png')} alt='Yew'></img>
-            <div className='mt-2 font-semibold'>
-              Yew Tree
-            </div>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Yew_Log.png')} alt='Yew'></img>
-          </div>
-          <div className='w-3/4'>
-          <ProgressBar progress={progress5} handleChange={handleChange5} progressText={progressText5} />
-          </div>
+          </div >
+          <div className='border-y border-black flex space-x-5'>
+            <div className='flex flex-col items-center'>
+              <div className='flex space-x-5 mt-2 ml-3'>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Yew_Log.png')} alt='Yew'></img>
+                <div className='mt-2 font-semibold'>
+                  Yew Tree
+                </div>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Yew_Log.png')} alt='Yew'></img>
+              </div>
+              <div className='w-3/4'>
+                <ProgressBar progress={progress5} handleChange={handleChange5} progressText={progressText5} />
+              </div>
 
-        </div >
-        <div>
-        <button
-            className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 5 ? 'bg-indigo-500' : ''}`}
-            onClick={ () => handleButtonClick(5)}
-          >
-            { active === 5 ? 'stop' : 'select' }
-          </button>
-        </div>
-      </div >
-      <div className='border-y border-black flex space-x-5'>
-        <div className='flex flex-col items-center'>
-          <div className='flex space-x-5 mt-2 ml-3'>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Magic_Log.png')} alt='Magic'></img>
-            <div className='mt-2 font-semibold'>
-              Magic Tree
+            </div >
+            <div>
+              <button
+                className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 6 ? 'bg-indigo-500' : ''}`}
+                onClick={() => handleButtonClick(6)}
+              >
+                {active === 6 ? 'stop' : 'select'}
+              </button>
             </div>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Magic_Log.png')} alt='Magic'></img>
-          </div>
-          <div className='w-3/4'>
-            <ProgressBar progress={progress6} handleChange={handleChange6} progressText={progressText6} />
-          </div>
-        </div >
-        <div>
-        <button
-            className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 6 ? 'bg-indigo-500' : ''}`}
-            onClick={ () => handleButtonClick(6)}
-          >
-            { active === 6 ? 'stop' : 'select' }
-          </button>
-        </div>
-      </div >
-      <div className='border-y border-black flex space-x-5'>
-        <div className='flex flex-col items-center'>
-          <div className='flex space-x-5 mt-2 ml-3'>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Elder_Log.png')} alt='Elder'></img>
-            <div className='mt-2 font-semibold'>
-              Elder Tree
+          </div >
+          <div className='border-y border-black flex space-x-5'>
+            <div className='flex flex-col items-center'>
+              <div className='flex space-x-5 mt-2 ml-3'>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Magic_Log.png')} alt='Magic'></img>
+                <div className='mt-2 font-semibold'>
+                  Magic Tree
+                </div>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Magic_Log.png')} alt='Magic'></img>
+              </div>
+              <div className='w-3/4'>
+                <ProgressBar progress={progress6} handleChange={handleChange6} progressText={progressText6} />
+              </div>
+            </div >
+            <div>
+              <button
+                className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 7 ? 'bg-indigo-500' : ''}`}
+                onClick={() => handleButtonClick(7)}
+              >
+                {active === 7 ? 'stop' : 'select'}
+              </button>
             </div>
-            <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Elder_Log.png')} alt='Elder'></img>
-          </div>
-          <div className='w-3/4'>
-            <ProgressBar progress={progress7} handleChange={handleChange7} progressText={progressText7} />
-          </div>
-        </div >
-        <div>
-        <button
-            className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 7 ? 'bg-indigo-500' : ''}`}
-            onClick={ () => handleButtonClick(7)}
-          >
-            { active === 7 ? 'stop' : 'select' }
-          </button>
+          </div >
+          <div className='border-y border-black flex space-x-5'>
+            <div className='flex flex-col items-center'>
+              <div className='flex space-x-5 mt-2 ml-3'>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Elder_Log.png')} alt='Elder'></img>
+                <div className='mt-2 font-semibold'>
+                  Elder Tree
+                </div>
+                <img src={require('./../../../assets/ItemThumbnail/Woodcutting/Elder_Log.png')} alt='Elder'></img>
+              </div>
+              <div className='w-3/4'>
+                <ProgressBar progress={progress7} handleChange={handleChange7} progressText={progressText7} />
+              </div>
+            </div >
+            <div>
+              <button
+                className={`bg-yellow-200 h-20 w-28 font-semibold border-x-2 border-black uppercase ${active === 8 ? 'bg-indigo-500' : ''}`}
+                onClick={() => handleButtonClick(8)}
+              >
+                {active === 8 ? 'stop' : 'select'}
+              </button>
+            </div>
+          </div >
         </div>
-      </div >
-      </div>
       </Fragment>
     </>
   )

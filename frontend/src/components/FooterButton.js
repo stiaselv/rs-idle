@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 export const FooterButton = (e) => {
 
-  let open = false
+  let open = useState(false);
 
   let footerOpen = () => {
     return open(true)

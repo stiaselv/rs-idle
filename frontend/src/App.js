@@ -10,6 +10,8 @@ import Bank from './views/Bank';
 import Forest from './views/Forest';
 import Quarry from './views/Quarry';
 import ProfilePage from './views/ProfilePage';
+import Forge from './views/Forge';
+import SlayerCave from './views/Slayer';
 
 function App() {
 
@@ -38,6 +40,8 @@ function App() {
           <Route path='/bank' element={<Bank />} />
           <Route path='/forest' element={<Forest />} />
           <Route path='/quarry' element={<Quarry />} />
+          <Route path='/forge' element={<Forge />} />
+          <Route path='/slayer' element={<SlayerCave />} />
         </Routes>
       
       </BrowserRouter>

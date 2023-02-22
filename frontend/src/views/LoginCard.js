@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import items from './../components/Items'
-import axios from 'axios';
+import Skills from './../components/Skills';
 
 const LoginCard = () => {
 
@@ -12,7 +12,19 @@ const LoginCard = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const inventoryList = []
+  const createInventory = () => {
+    items.forEach((item) => {
+      let invItem = {
+        item: item,
+        quantity: 0,
+      }
+      inventoryList.push(invItem)
+    })
+  }  
+
   const handleDispatch = () => {
+    createInventory()
     dispatch({
       type: 'SET_ITEMS',
       payload: items
@@ -21,6 +33,15 @@ const LoginCard = () => {
       type: 'SET_LOGIN',
       payload: true
     })
+    dispatch({
+      type: 'SET_INVENTORY',
+      payload: inventoryList
+    })
+    dispatch({
+      type: 'SET_SKILLS',
+      payload: Skills
+    })
+    
   }
 
   const handleLogin = async (e) => {
